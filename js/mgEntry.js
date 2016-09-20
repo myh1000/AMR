@@ -16,7 +16,7 @@
   along with All Mangas Reader.  If not, see <http://www.gnu.org/licenses/>.
 
  */
-var amrc_repository        = "https://cdn.rawgit.com/myh1000/mirrors/tree/master";
+var amrc_repository        = "js/mirrors/";
 var amrc_root              = "https://rawgit.com/myh1000/mirrors/tree/master";
 var amrc_repository_backup = "https://raw.github.com/AllMangasReader-dev/mirrors/master/";
 
@@ -70,10 +70,12 @@ function getMirrorsDescription(callback) {
     } else {
       // First load of websites
       $.ajax({
-        url : amrc_repository + "websites.json",
+        url : chrome.extension.getURL('js/mirrors/websites.json'),
         success : function (resp) {
-          var ws = resp,
+          var ws = eval(resp),
             i;
+          console.log(ws);
+          console.log(ws.length);
           for (i = 0; i < ws.length; i += 1) {
             console.log("Load JS from repository for " + ws[i].mirrorName);
             loadJSFromRepository(ws[i]);
@@ -91,6 +93,7 @@ function getMirrorsDescription(callback) {
 function loadJSFromRepository(description) {
   "use strict";
   //New way (CSP with manifest 2) --> store link to js on https to include when needed...
+  console.log(description.jsFile);
   description.jsCode = amrc_repository + description.jsFile;
   console.log("insert or update " + description.mirrorName + " in database");
   amrcsql.webdb.storeWebsite(description, function () {
@@ -126,23 +129,23 @@ function waitForFinishRepository(websites, callback) {
 //##############################################################################
 function updateWebsitesFromRepository(callback) {
   "use strict";
-  $.ajax({
-     type: 'GET',
-     url: amrc_repository + "websites.json",
-     error: function(xhr, status, error) {
-        amrc_repository = amrc_repository_backup;
-     },
-  });
+  // $.ajax({
+  //    type: 'GET',
+  //    url: amrc_repository + "websites.json",
+  //    error: function(xhr, status, error) {
+  //       amrc_repository = amrc_repository_backup;
+  //    },
+  // });
 
   $.ajax({
-    url : amrc_repository + "websites.json?1",
+    url : chrome.extension.getURL('js/mirrors/websites.json'),
     beforeSend : function (xhr) {
       xhr.setRequestHeader("Cache-Control", "no-cache");
       xhr.setRequestHeader("Pragma", "no-cache");
     },
     success : function (resp) {
       //distant descriptions
-      var wsdist = resp;
+      var wsdist = eval(resp);
       //local description
       amrcsql.webdb.getWebsites(function (list) {
         var wsloc = list;
@@ -237,7 +240,7 @@ function updateJSFromRepository(description, change) {
     });
   }
   //Notification
-  var params = getParameters();
+  var params = chrome.extension.getBackgroundPage().getParameters();
   if (params.shownotifws === 1 && (change.nonotif === undefined || !change.nonotif)) {
     var wsData = {
       ws : description.mirrorName,
@@ -333,7 +336,7 @@ function importImplentationFromId(id, callback) {
 function finishImportAfterInsert(description, callback, isNew) {
   "use strict";
   //Notification
-  var params = getParameters();
+  var params = chrome.extension.getBackgroundPage().getParameters();
   if (params.shownotifws === 1) {
     var wsData = {
       ws : description.mirrorName,
@@ -389,7 +392,7 @@ function releaseImplentationFromId(id, callback) {
             });
           }
           //Notification
-          var params = getParameters();
+          var params = chrome.extension.getBackgroundPage().getParameters();
           if (params.shownotifws === 1) {
             var wsData = {
               ws : description.mirrorName,
