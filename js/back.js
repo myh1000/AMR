@@ -80,8 +80,11 @@ function initPage() {
           chrome.runtime.sendMessage({action: "mangaInfos", url: res.currentMangaURL}, function(resp) {
             chrome.runtime.sendMessage({action: "barState"}, function(barState) {
               createDataDiv(res);
+              console.log();
               if (response.displayChapters == 1) {
-                var imagesUrl = getMirrorScript().getListImages(document, window.location.href);
+                if (getMirrorScript().mirrorName != "KissManga") {
+                    var imagesUrl = getMirrorScript().getListImages(document, window.location.href);
+                }
                 var select = getMirrorScript().getMangaSelectFromPage(document, window.location.href);
                 var isSel = true;
                 if (select === null) {
@@ -113,7 +116,9 @@ function initPage() {
                 if (curmode == -1) {
                   curmode = response.displayMode;
                 }
-                writeImages(where, imagesUrl, curmode, response);
+                if (getMirrorScript().mirrorName != "KissManga") {
+                    writeImages(where, imagesUrl, curmode, response);
+                }
               }
               if (response.markwhendownload === 0 && (response.addauto == 1 || resp !== null)) {
                 var obj = {"action": "readManga",
@@ -1028,7 +1033,7 @@ function writeImages(where, list, mode, res) {
     var div = $("<div id='loader" + i + "' class='divLoading'></div>");
     div.css("background", "url(" + chrome.extension.getURL("img/loading.gif") + ") no-repeat center center");
     div.appendTo(spanner);
-    
+
     // Using jQuery to create this image instead of DOM native method fix a
     //weird bug on canary and only some websites.
     //My thought is that a version of canary was mistaking the embedded jQuery

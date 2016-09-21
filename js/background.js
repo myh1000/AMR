@@ -1110,10 +1110,12 @@ chrome.runtime.onMessage.addListener(
                     document.body.appendChild(div);
                     document.getElementById(id).contentWindow.document.documentElement.innerHTML = data;
                     $(document.getElementById(id).contentWindow.document).ready(function () {
-                        var imagesUrl = getMangaMirror(request.mirrorName).getListImages(document.getElementById(id).contentWindow.document, request.url);
-                        sendResponse({
-                            images: imagesUrl
-                        });
+                        if (request.mirrorName != "KissManga") {
+                            var imagesUrl = getMangaMirror(request.mirrorName).getListImages(document.getElementById(id).contentWindow.document, request.url);
+                            sendResponse({
+                                images: imagesUrl
+                            });
+                        }
                         $("#" + id).remove();
                     });
                 },
