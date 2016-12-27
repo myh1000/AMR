@@ -620,30 +620,30 @@ function writeNavigation(where, select, res, params) {
             $(_self).addClass("amrbarlayout");
 
             //TODO : change pub !!! (facebook + donate)...
-            if (params.pub == 1) {
-                var linkPub = $("<div class=\"titleAMRPub\"></div>");
-                var linkP2 = $("<span>You like reading your mangas this way with All Mangas Reader Extension, please donate !!&nbsp;&nbsp;</span><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" style='display:inline-block;'><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"7GQN3EZ6KK5MU\"><input type=\"image\" src=\"https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_SM.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>");
-                linkP2.css("vertical-align", "middle");
-                linkP2.css("color", "red!important");
-                /*linkP2.click(function() {
-                  chrome.runtime.sendMessage({action: "openExtensionMainPage"}, function(response) {});
-                });*/
-                linkP2.appendTo(linkPub);
-                var deletePub = $("<img src=\"" + chrome.extension.getURL("img/cancel.png") + "\" />");
-                deletePub.attr("title", "Remove this banner...");
-                deletePub.css("cursor", "pointer");
-                deletePub.css("vertical-align", "middle");
-                deletePub.css("margin-left", "10px");
-                deletePub.click(function () {
-                    chrome.runtime.sendMessage({
-                        action: "deletepub"
-                    }, function (response) {
-                        $(".titleAMRPub").remove();
-                    });
-                });
-                deletePub.appendTo(linkPub);
-                linkPub.appendTo(_self);
-            }
+            // if (params.pub == 1) {
+            //     var linkPub = $("<div class=\"titleAMRPub\"></div>");
+            //     var linkP2 = $("<span>You like reading your mangas this way with All Mangas Reader Extension, please donate !!&nbsp;&nbsp;</span><form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" style='display:inline-block;'><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"7GQN3EZ6KK5MU\"><input type=\"image\" src=\"https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_SM.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>");
+            //     linkP2.css("vertical-align", "middle");
+            //     linkP2.css("color", "red!important");
+            //     /*linkP2.click(function() {
+            //       chrome.runtime.sendMessage({action: "openExtensionMainPage"}, function(response) {});
+            //     });*/
+            //     linkP2.appendTo(linkPub);
+            //     var deletePub = $("<img src=\"" + chrome.extension.getURL("img/cancel.png") + "\" />");
+            //     deletePub.attr("title", "Remove this banner...");
+            //     deletePub.css("cursor", "pointer");
+            //     deletePub.css("vertical-align", "middle");
+            //     deletePub.css("margin-left", "10px");
+            //     deletePub.click(function () {
+            //         chrome.runtime.sendMessage({
+            //             action: "deletepub"
+            //         }, function (response) {
+            //             $(".titleAMRPub").remove();
+            //         });
+            //     });
+            //     deletePub.appendTo(linkPub);
+            //     linkPub.appendTo(_self);
+            // }
             var whereNavToTrail = getMirrorScript().whereDoIWriteNavigation(document, window.location.href);
             addTrailingLastChap($(whereNavToTrail).last());
         });
