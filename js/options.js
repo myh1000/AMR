@@ -1,19 +1,19 @@
 ﻿/**
 
   This file is part of All Mangas Reader.
-  
+
   All Mangas Reader is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   All Mangas Reader is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
-  along with All Mangas Reader.  If not, see <http://www.gnu.org/licenses/>. 
+  along with All Mangas Reader.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -148,7 +148,7 @@ function loadSelectors() {
         $(this).prop("checked", true);
         var mirrorName = $(".mirrorName", $(this).parent().parent()).attr("name");
         //console.log("activate " + mirrorName + " ischecked : " + $(this).is(":checked"));
-        
+
         chrome.runtime.sendMessage({
           action: "activateMirror",
           mirror: mirrorName
@@ -496,7 +496,7 @@ $(function () {
 
   /* Examples
   document.getElementById("myBtn").onclick=function(){displayDate()};
-  
+
   object.onchange=function(){SomeJavaScriptCode};
   document.getElementsByTagName("input").onchange=function(){save_options()};
  */
@@ -513,8 +513,8 @@ $(function () {
   $("#supportedWS").click(function () {
     switchOnglet($(this), 'ong4');
   });
-  
-  // Fix chapters options not showing/hiding when clicking 
+
+  // Fix chapters options not showing/hiding when clicking
   $('#chapsCk').on("click", function() {
     if (this.checked) {
         $('#chaptersOptions').show("table-row");
@@ -561,7 +561,3 @@ $(function () {
     chrome.runtime.sendMessage({action: 'opentab', url: 'http://community.allmangasreader.com/'}, function () {});
   });
 });
-
-
-
-
