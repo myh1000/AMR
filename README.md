@@ -1,11 +1,13 @@
 [![Coverage Status](https://coveralls.io/repos/AllMangasReader-dev/AMR/badge.png)](https://coveralls.io/r/AllMangasReader-dev/AMR) [![Code Climate](https://codeclimate.com/github/AllMangasReader-dev/AMR.png)](https://codeclimate.com/github/AllMangasReader-dev/AMR) [![Build Status](https://travis-ci.org/AllMangasReader-dev/AMR.svg?branch=develop)](https://travis-ci.org/AllMangasReader-dev/AMR)
 
-AMR
+AMR (All Mangas Reader)
 ===
 AllMangasReader developer branch has the lastest changes made
 to the AllMangasReader Chrome Extension.
 
-Get our lastest stable version from http://allmangasreader.com,
+This version of AllMangasReader offers support for a few more sites such as KissManga, etc.
+
+Get the lastest stable version from http://allmangasreader.com,
 also get support on our forums in http://allmangasreader.com/forum
 
 PLUGINS
@@ -18,14 +20,6 @@ PLUGINS
   
 INSTALLATION
 -------------
-Easy instalation & Auto-update
-
-1. Go to http://www.allmangasreader.com/
-2. Click "Install beta channel" and wait for the download to finish
-3. Open the extension list ( chrome://extension )
-4. Drag-n-drop your downloaded .crx file in the extension list
-
-Manual installation
 
 1. Download the zip file or clone the git repository
 2. Go to the extension list.
