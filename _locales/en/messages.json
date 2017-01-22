@@ -1,16 +1,16 @@
 ﻿{
-  // manifest 
+  // manifest
   "description": {
     "message": "Follow updates of online manga readers. Beautify reading, with full chapters scans.",
     "description": "Description of the extension."
   },
-  
+
   // General
   "licence": {
     "message": "All Mangas Reader is under the licence of GLPv3",
     "description": "This is the licencing info"
   },
-  
+
   // Background
   "background_bookmark_menu": {
     "message": "Bookmark in AMR",
@@ -94,8 +94,8 @@
     "message": "Bookmark already exist, update note..",
     "description": "Message in import export to merge a bookmark"
   },
-  
-  
+
+
   // options
   "options_title": {
     "message": "All Mangas Reader Options",
@@ -162,7 +162,7 @@
     "description": "Option to display book japanesly"
   },
   "options_resize": {
-    "message": "Resize scans images to fit screen if they are to wide",
+    "message": "Resize scans images to fit screen if they are too wide",
     "description": "Option to resize scans image"
   },
   "options_load_opts": {
@@ -463,8 +463,8 @@
     "message": "This implementation is a temporary one imported directly from AMR Community. Click here to get the latest release for this website and come back in release process.",
     "description": "temporary implementation message for developers"
   },
-  
-  
+
+
   // common messages
   "common_support": {
     "message": "Support All Mangas Reader:",
@@ -560,5 +560,5 @@
     "message": "mail me",
     "description": "Expression to say 'send me a mail'"
   }
-  
+
 }
