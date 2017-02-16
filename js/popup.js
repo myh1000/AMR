@@ -1,19 +1,19 @@
 ﻿/**
 
   This file is part of All Mangas Reader.
-  
+
   All Mangas Reader is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   All Mangas Reader is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
-  along with All Mangas Reader.  If not, see <http://www.gnu.org/licenses/>. 
+  along with All Mangas Reader.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -94,22 +94,26 @@ function closestEltData(elt) {
 }
 function actionPlay() {
   "use strict";
-  openTab(closestEltData($(this)).data("mgplay"));
+  chrome.tabs.create({"url": closestEltData($(this)).data("mgplay"), "selected": false});
+  // openTab(closestEltData($(this)).data("mgplay"));
 }
 function actionBack() {
   "use strict";
   var opt = $(".mglist select option:selected", closestEltData($(this)));
-  openTab((opt.next().size() > 0) ? opt.next().val() : opt.val());
+  chrome.tabs.create({"url": (opt.next().size() > 0) ? opt.next().val() : opt.val(), "selected": false});
+  // openTab((opt.next().size() > 0) ? opt.next().val() : opt.val());
 }
 function actionForward() {
   "use strict";
   var opt = $(".mglist select option:selected", closestEltData($(this)));
-  openTab((opt.prev().size() > 0) ? opt.prev().val() : opt.val());
+  chrome.tabs.create({"url": (opt.prev().size() > 0) ? opt.prev().val() : opt.val(), "selected": false});
+  // openTab((opt.prev().size() > 0) ? opt.prev().val() : opt.val());
 }
 function actionEnd() {
   "use strict";
   var opt = $(".mglist select option:first", closestEltData($(this)));
-  openTab(opt.val());
+  chrome.tabs.create({"url": opt.val(), "selected": false});
+  // openTab(opt.val());
 }
 function isInGroup(elt) {
   "use strict";
@@ -821,7 +825,7 @@ function fillOthers(mg, where) {
   var infos = $("<div class='mgotherscont'></div>");
   var infoTab = $("<table class='mginfos'><tr><td><span>Categories : </span><div class='mginfo cats'>No categories for this manga</div></td><td><span>Bookmarks : </span><div class='mginfo books'>No bookmarks for this manga</div></td></tr></table>");
   infoTab.appendTo(infos);
-  infos.appendTo(oths);   
+  infos.appendTo(oths);
   fillCategories(mg, $(".cats", infoTab));
   fillBookmarks(mg, $(".books", infoTab));
   var buts = $("<div class='mgotherscont'><div class='button actsearchmg'>Search this mangas elsewhere</div><div class='button actresetreading'>Reset manga reading</div><div class='button actstopupdates' title='If a manga stops follow updates, AMR will check latest published chapters but won t notify you'>Stop following updates</div><div class='button actstopupdating' title='If a manga stops updating, AMR won t try to get updates from website.'>Stop updating</div></div>");
@@ -998,7 +1002,7 @@ function createMangaEntryList(mangas, where) {
       if (val.update === 0) {
         isUpdate = false;
       }
-    });                     
+    });
   } else {
     if (mangas.read === 1)
       isRead = true;
@@ -1065,7 +1069,7 @@ function createMangaEntryList(mangas, where) {
       mg.hide();
     }
     mg.appendTo(where);
-  } else {  
+  } else {
     var mg = $("<div class='manga'><div class='mgtable'><div class='mgtitle'><div class='mgtitlehead'><img src='' class='mgmirroricon' /><span class='mgname'></span></div></div><div class='mglist'><span class='custom-select'><select></select></span></div><div class='mgactions'></div></div></div>");
     setData(mg, mangas);
     if (isRead) {
