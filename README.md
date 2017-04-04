@@ -21,11 +21,18 @@ PLUGINS
 INSTALLATION
 -------------
 
-1. Download the zip file or clone the git repository
-2. Go to the extension list.
-3. Activate "Developers Mode"
-4. Click "Load unpacked extension…"
-5. Look for the folder with the extension and enjoy
+1. Clone the git repository
+```shell
+git clone https://github.com/myh1000/AMR.git
+```
+2. Pull the submodules
+```shell
+git submodule update --init --recursive --remote
+```
+3. Go to the extension list.
+4. Activate "Developers Mode"
+5. Click "Load unpacked extension…"
+6. Look for the folder with the extension and enjoy
 
 BUGS
 -------------
