@@ -1,4 +1,4 @@
-﻿/**
+/**
 
   This file is part of All Mangas Reader.
 
@@ -50,7 +50,7 @@ function MangaElt(obj) {
   this.cats = obj.cats || [];
   if (obj.cats) {
     this.cats = JSON.parse(obj.cats);
-  }  
+  }
   this.ts = obj.ts || Math.round((new Date()).getTime() / 1000);
   this.upts = obj.upts || 0;
 
@@ -62,12 +62,12 @@ function MangaElt(obj) {
       posNew = -1,
       isNew = false,
       i;
-
+    // console.log(this.listChaps,this.lastChapterReadURL,obj.lastChapterReadURL.replace('http://','https://'));
     for (i = 0; i < this.listChaps.length; i += 1) {
-      if (this.listChaps[i][1] === this.lastChapterReadURL) {
+      if (this.listChaps[i][1].replace('http://','https://') === this.lastChapterReadURL) {
         posOld = i;
       }
-      if (this.listChaps[i][1] === obj.lastChapterReadURL) {
+      if (this.listChaps[i][1].replace('http://','https://') === obj.lastChapterReadURL.replace('http://','https://')) {
         posNew = i;
       }
     }
@@ -81,14 +81,20 @@ function MangaElt(obj) {
               if (lst[i][1] === obj2.lastChapterReadURL) {
                 posOld = i;
               }
-              if (lst[i][1] === obj.lastChapterReadURL) {
+              if (lst[i][1].replace('http://','https://') === obj.lastChapterReadURL.replace('http://','https://')) {
                 posNew = i;
               }
             }
             if (posNew !== -1) {
               if (fromSite || (posNew < posOld || posOld === -1)) {
-                obj2.lastChapterReadURL = obj.lastChapterReadURL;
-                obj2.lastChapterReadName = obj.lastChapterReadName;
+                if (lst[0][1].indexOf("https://") != -1) {
+                  obj2.lastChapterReadURL = obj.lastChapterReadURL.replace('http://','https://');
+                  obj2.lastChapterReadName = obj.lastChapterReadURL.replace('http://','https://');
+                }
+                else {
+                  obj2.lastChapterReadURL = obj.lastChapterReadURL;
+                  obj2.lastChapterReadName = obj.lastChapterReadURL;
+                }
                 if (!fromSite) {
                   obj2.ts = Math.round((new Date()).getTime() / 1000);
                 }
@@ -99,15 +105,22 @@ function MangaElt(obj) {
         });
       }
     } else {
+        // console.log(posNew,posOld);
       if (fromSite || (posNew < posOld || posOld === -1)) {
-        this.lastChapterReadURL = obj.lastChapterReadURL;
-        this.lastChapterReadName = obj.lastChapterReadName;
+        if (this.listChaps[0][1].indexOf("https://") != -1) { // see if https
+          this.lastChapterReadURL = obj.lastChapterReadURL.replace('http://','https://');
+          this.lastChapterReadName = obj.lastChapterReadName.replace('http://','https://');
+        }
+        else {
+          this.lastChapterReadURL = obj.lastChapterReadURL;
+          this.lastChapterReadName = obj.lastChapterReadName;
+        }
         if (!fromSite) {
           this.ts = Math.round((new Date()).getTime() / 1000);
         }
       }
     }
-    
+
     //if the current manga doesnt have a name, and the request does, then we fix the current name
     if(this.name === "" && obj.name !== this.name){
       this.name=obj.name;
@@ -244,4 +257,3 @@ function MangaElt(obj) {
     }
   };
 }
-
