@@ -161,7 +161,7 @@ function updateWebsitesFromRepository(callback) {
               if (wsdist[i].mirrorName === wsloc[j].mirrorName) {
                 if (!validURL(wsloc[j].jsCode)) {
                   // object correspond to old description (js code in database... switch to manifest 2)
-                  console.log("Website " + wsdist[i].mirrorName + " has an old description... swintch to new one...");
+                  console.log("Website " + wsdist[i].mirrorName + " has an old description... switch to new one...");
                   var change = {
                     description : wsdist[i],
                     type : "update"
