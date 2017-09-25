@@ -64,7 +64,7 @@ function MangaElt(obj) {
       i;
     // console.log(this.listChaps,this.lastChapterReadURL,obj.lastChapterReadURL.replace('http://','https://'));
     for (i = 0; i < this.listChaps.length; i += 1) {
-      if (this.listChaps[i][1].replace('http://','https://') === this.lastChapterReadURL) {
+      if (this.listChaps[i][1].replace('http://','https://') === this.lastChapterReadURL.replace('http://','https://')) {
         posOld = i;
       }
       if (this.listChaps[i][1].replace('http://','https://') === obj.lastChapterReadURL.replace('http://','https://')) {
